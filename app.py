@@ -1,7 +1,30 @@
 import streamlit as st
 import google.generativeai as genai
 import json
+st.set_page_config(page_title="AI Exam Revision Tool", page_icon="📚", layout="wide")
 
+st.markdown("""
+<style>
+body { background-color: #0f172a; }
+.main { background: #020617; color: #e5e7eb; }
+.block-container { padding-top: 1.5rem; }
+h1, h2, h3, h4 { color: #e5e7eb; }
+.question-box {
+    background: #020617;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    border: 1px solid #1f2937;
+    margin-bottom: 0.6rem;
+}
+.stButton>button {
+    border-radius: 999px;
+    font-weight: 600;
+    background: linear-gradient(90deg,#22c55e,#16a3b8);
+    color: white;
+    border: none;
+}
+</style>
+""", unsafe_allow_html=True)
 # ---------------- BASIC SETUP ----------------
 
 st.set_page_config(page_title="AI Exam Revision Tool", page_icon="🚀")
