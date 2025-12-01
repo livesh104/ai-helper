@@ -178,7 +178,8 @@ if st.session_state.score is not None:
     st.write(f"Score: {st.session_state.score} / {len(qs)}")
 
     st.markdown("### Question-wise feedback")
-  for i, q in enumerate(qs):
+
+    for i, q in enumerate(qs):
         your = ans.get(i, "")
         correct = q["correct"]
         explanation = q.get("explanation", "")
