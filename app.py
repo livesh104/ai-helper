@@ -1,6 +1,8 @@
 import streamlit as st
 import google.generativeai as genai
 import json
+
+# ---------- BASIC LOOK ----------
 st.set_page_config(page_title="AI Exam Revision Tool", page_icon="📚", layout="wide")
 
 st.markdown("""
@@ -25,10 +27,8 @@ h1, h2, h3, h4 { color: #e5e7eb; }
 }
 </style>
 """, unsafe_allow_html=True)
+
 # ---------------- BASIC SETUP ----------------
-
-st.set_page_config(page_title="AI Exam Revision Tool", page_icon="🚀")
-
 st.title("🚀 AI Exam Revision & Self‑Evaluation Tool")
 st.write("Generate custom quizzes using AI, answer them, and see detailed feedback.")
 
@@ -56,7 +56,6 @@ if "score" not in st.session_state:
     st.session_state.score = None
 
 # ---------------- FUNCTIONS ----------------
-
 def generate_questions():
     prompt = f"""Create exactly {num_questions} multiple-choice questions for {subject} on "{topic}" ({difficulty} level).
 
@@ -144,7 +143,11 @@ if st.session_state.questions:
     letters = ["A", "B", "C", "D"]
 
     for i, q in enumerate(st.session_state.questions):
-        st.markdown(f"**Q{i+1}. {q['question']}**")
+        # styled question card
+        st.markdown(
+            f'<div class="question-box"><b>Q{i+1}.</b> {q["question"]}</div>',
+            unsafe_allow_html=True
+        )
 
         # build labeled options: "A) text"
         labeled_options = []
@@ -175,8 +178,7 @@ if st.session_state.score is not None:
     st.write(f"Score: {st.session_state.score} / {len(qs)}")
 
     st.markdown("### Question-wise feedback")
-
-    for i, q in enumerate(qs):
+  for i, q in enumerate(qs):
         your = ans.get(i, "")
         correct = q["correct"]
         explanation = q.get("explanation", "")
